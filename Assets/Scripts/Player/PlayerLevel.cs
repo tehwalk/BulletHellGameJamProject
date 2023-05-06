@@ -6,8 +6,13 @@ using TMPro;
 
 public class PlayerLevel : MonoBehaviour
 {
+    private static PlayerLevel instance;
+    public static PlayerLevel Instance { get { return instance; } }
     GameManager gameManager;
+    WeaponActivator weaponActivator;
     int playerLevel = 1;
+    bool canBeHit = true;
+    public int Level { get { return playerLevel; } }
     [Header("Basic Properties")]
     [SerializeField] int xpPoints = 2;
     [SerializeField] int xpRequiredStarting = 10;
@@ -20,9 +25,15 @@ public class PlayerLevel : MonoBehaviour
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] Slider xpBar;
 
+    private void Awake()
+    {
+        if (instance != null && instance != this) instance = null;
+        instance = this;
+    }
     private void Start()
     {
         gameManager = GameManager.Instance;
+        weaponActivator = GetComponent<WeaponActivator>();
         xpRequired = xpRequiredStarting;
         xpPointsSum = xpRequired / 2;
         UpdateXPPointsGUI();
@@ -39,17 +50,19 @@ public class PlayerLevel : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && canBeHit == true)
         {
             Debug.Log("melee hit");
-            StartCoroutine(DamageOverTime(other.gameObject.GetComponent<EnemyBehaviour>().Damage));
+            LoseXP(other.gameObject.GetComponent<EnemyBehaviour>().Damage);
+            StartCoroutine(Invulnerablity());
         }
     }
 
-    IEnumerator DamageOverTime(int dmg)
+    IEnumerator Invulnerablity()
     {
-       LoseXP(dmg);
-       yield return new WaitForSeconds(enemyHitRate);
+        canBeHit = false;
+        yield return new WaitForSeconds(enemyHitRate);
+        canBeHit = true;
     }
 
     void CollectXP()
@@ -59,6 +72,7 @@ public class PlayerLevel : MonoBehaviour
         if (xpPointsSum >= xpRequired)
         {
             playerLevel += 1;
+            weaponActivator.IncreaseLifeTime();
             IncreaseXPRequired();
             xpPointsSum = 0;
         }
@@ -77,6 +91,7 @@ public class PlayerLevel : MonoBehaviour
                 Debug.Log("DEd");
                 gameManager.Lost();
             }
+            weaponActivator.DecreaseLifeTime();
             DecreaseXPRequired();
         }
     }

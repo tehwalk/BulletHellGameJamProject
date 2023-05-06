@@ -17,8 +17,10 @@ public class GameManager : MonoBehaviour
     [Space]
     [Header("GUI Properties")]
     [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] TextMeshProUGUI wonScoreText;
     [SerializeField] GameObject pauseGUI, lostGUI, wonGUI;
     AudioManager audioManager;
+    PlayerLevel playerLevel;
 
     private void Awake()
     {
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         audioManager = AudioManager.Instance;
+        playerLevel = PlayerLevel.Instance;
         Time.timeScale = 1;
         //globalManager = GetComponent<BulletManager>();
         timeRemaining = maxTimeInSeconds;
@@ -88,6 +91,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         wonGUI.SetActive(true);
+        wonScoreText.text = "Level Reached: " + playerLevel.Level.ToString();
         gameState = GameState.Won;
     }
 

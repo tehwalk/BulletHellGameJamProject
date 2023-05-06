@@ -17,6 +17,7 @@ public class Weapon : ScriptableObject
     public float lifeTime;
     public float size;
     public float fireRate;
+    [Range(0,360)]
     public float arc;
     public Material bulletMaterial;
 }

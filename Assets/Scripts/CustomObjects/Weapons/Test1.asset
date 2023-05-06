@@ -16,8 +16,8 @@ MonoBehaviour:
   bulletDamage: 5
   numberOfColumns: 5
   speed: 10
-  bulletSprite: {fileID: 7482667652216324306, guid: b686aa2322d4338448ae4cec801fdadf, type: 3}
-  bulletColor: {r: 0.2057753, g: 0.754717, b: 0.10252755, a: 1}
+  bulletSprite: {fileID: 1221262148, guid: 7600b63cec5bec5448b8e58d7261172c, type: 3}
+  bulletColor: {r: 1, g: 1, b: 1, a: 1}
   lifeTime: 5
   size: 0.5
   fireRate: 4

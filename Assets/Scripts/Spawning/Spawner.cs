@@ -5,13 +5,20 @@ using BulletFury;
 
 public class Spawner : MonoBehaviour
 {
+    PlayerLevel playerLevel;
     [SerializeField] GameObject prefabToBeSpawned;
     [SerializeField] float spawnRate;
-    [SerializeField] int bursts;
+    [SerializeField] int burstsStart;
+    int bursts = 0;
     [SerializeField] MobPool pool;
     private void Start()
     {
+        playerLevel = PlayerLevel.Instance;
+        bursts = burstsStart;
         InvokeRepeating("SpawnEnemy", 1f, spawnRate);
+    }
+    private void Update() {
+        bursts = burstsStart * 2;
     }
     void SpawnEnemy()
     {

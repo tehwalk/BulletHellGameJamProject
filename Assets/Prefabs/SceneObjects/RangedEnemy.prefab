@@ -104,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 970c87aea98d4bc4ba5afac29f811fc9, type: 2}
   shooter: {fileID: 1146270428869036293}
+  rotSpeed: 30
 --- !u!58 &-1959456076828894508
 CircleCollider2D:
   m_ObjectHideFlags: 0

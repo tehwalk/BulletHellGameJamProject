@@ -288,15 +288,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.13743894, b: 0, a: 0.392}
+  m_Color: {r: 0.745283, g: 0.745283, b: 0.745283, a: 0.8509804}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 76dbfeacdaf52a34daba8fb412f5582d, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 334230510, guid: c17435f1b8919be419974c270f2bacda, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -556,6 +556,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1391484689}
     m_Modifications:
+    - target: {fileID: 426862652121489201, guid: d9a27024d49c495449302926004b4776, type: 3}
+      propertyPath: m_text
+      value: CREDITS
+      objectReference: {fileID: 0}
     - target: {fileID: 2403947565583899650, guid: d9a27024d49c495449302926004b4776, type: 3}
       propertyPath: m_Name
       value: CreditsButton
@@ -860,6 +864,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1391484689}
     m_Modifications:
+    - target: {fileID: 426862652121489201, guid: d9a27024d49c495449302926004b4776, type: 3}
+      propertyPath: m_text
+      value: 'QUIT
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 2224101643875908818, guid: d9a27024d49c495449302926004b4776, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1008,6 +1018,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1391484689}
     m_Modifications:
+    - target: {fileID: 426862652121489201, guid: d9a27024d49c495449302926004b4776, type: 3}
+      propertyPath: m_text
+      value: PLAY
+      objectReference: {fileID: 0}
     - target: {fileID: 2224101643875908818, guid: d9a27024d49c495449302926004b4776, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

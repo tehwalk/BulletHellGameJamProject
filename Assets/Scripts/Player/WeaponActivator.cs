@@ -6,10 +6,13 @@ using BulletFury;
 
 public class WeaponActivator : MonoBehaviour
 {
+    PlayerLevel playerLevel;
     //BulletManager bulletManager;
     [SerializeField] ParticleShooter shooter;
     bool fire = false;
-    [SerializeField] float lifeTimeMax;
+    [SerializeField] float lifeTimeMaxStart;
+    [SerializeField] float lifeTimeMaxIncrement;
+    float lifeTimeMax;
     [SerializeField] Image img;
     float lifeTime = 0;
     Weapon activeWeapon;
@@ -18,15 +21,17 @@ public class WeaponActivator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerLevel = PlayerLevel.Instance;
+        lifeTimeMax = lifeTimeMaxStart;
         //bulletManager = GetComponent<BulletManager>();
-       // shooter = GetComponent<ParticleShooter>();
+        // shooter = GetComponent<ParticleShooter>();
         DisableWeapon();
         imgOriginalScale = img.rectTransform.localScale;
-        shooter.desiredAction = (GameObject gameObject)=>
+        shooter.desiredAction = (GameObject gameObject) =>
         {
-            if(gameObject.TryGetComponent<EnemyBehaviour>(out EnemyBehaviour enemy))
+            if (gameObject.TryGetComponent<EnemyBehaviour>(out EnemyBehaviour enemy))
             {
-               enemy.GetDamage(activeWeapon.bulletDamage);
+                enemy.GetDamage(activeWeapon.bulletDamage);
             }
         };
     }
@@ -36,8 +41,8 @@ public class WeaponActivator : MonoBehaviour
     {
         if (fire == true)
         {
-           // bulletManager.Spawn(transform.position, transform.up);
-            
+            // bulletManager.Spawn(transform.position, transform.up);
+
             lifeTime -= Time.deltaTime;
             img.rectTransform.localScale = new Vector3(ExtentionMethods.MapValueToRange(lifeTime, lifeTimeMax, 0, imgOriginalScale.x, 0), imgOriginalScale.y, imgOriginalScale.z);
             if (lifeTime <= 0)
@@ -70,10 +75,20 @@ public class WeaponActivator : MonoBehaviour
         {
             activeWeapon = holder.myWeapon;
             shooter.SetSettings(activeWeapon);
-           // bulletManager.SetBulletSettings(activeWeapon.bulletSettings);
-           // bulletManager.SetSpawnSettings(activeWeapon.spawnSettings);
+            // bulletManager.SetBulletSettings(activeWeapon.bulletSettings);
+            // bulletManager.SetSpawnSettings(activeWeapon.spawnSettings);
             ActivateWeapon();
             Destroy(other.gameObject);
         }
+    }
+
+    public void IncreaseLifeTime()
+    {
+        lifeTimeMax += lifeTimeMaxIncrement;
+    }
+
+    public void DecreaseLifeTime()
+    {
+        lifeTimeMax -= lifeTimeMaxIncrement;
     }
 }
