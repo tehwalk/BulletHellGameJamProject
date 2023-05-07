@@ -54,10 +54,17 @@ public class PlayerLevel : MonoBehaviour
         {
             Debug.Log("melee hit");
             LoseXP(other.gameObject.GetComponent<EnemyBehaviour>().Damage);
+
             StartCoroutine(Invulnerablity());
         }
     }
 
+    IEnumerator Flash()
+    {
+        GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+    }
     IEnumerator Invulnerablity()
     {
         canBeHit = false;
@@ -81,6 +88,7 @@ public class PlayerLevel : MonoBehaviour
 
     public void LoseXP(int dmg)
     {
+        StartCoroutine(Flash());
         xpPointsSum -= dmg;
         UpdateXPPointsGUI();
         if (xpPointsSum <= 0)

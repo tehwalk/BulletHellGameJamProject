@@ -41,8 +41,6 @@ public class WeaponActivator : MonoBehaviour
     {
         if (fire == true)
         {
-            // bulletManager.Spawn(transform.position, transform.up);
-
             lifeTime -= Time.deltaTime;
             img.rectTransform.localScale = new Vector3(ExtentionMethods.MapValueToRange(lifeTime, lifeTimeMax, 0, imgOriginalScale.x, 0), imgOriginalScale.y, imgOriginalScale.z);
             if (lifeTime <= 0)
@@ -50,7 +48,6 @@ public class WeaponActivator : MonoBehaviour
                 DisableWeapon();
             }
         }
-
     }
 
     public void ActivateWeapon()
@@ -58,6 +55,7 @@ public class WeaponActivator : MonoBehaviour
         fire = true;
         lifeTime = lifeTimeMax;
         img.enabled = true;
+        //shooter
         shooter.Shoot();
     }
 
@@ -75,8 +73,6 @@ public class WeaponActivator : MonoBehaviour
         {
             activeWeapon = holder.myWeapon;
             shooter.SetSettings(activeWeapon);
-            // bulletManager.SetBulletSettings(activeWeapon.bulletSettings);
-            // bulletManager.SetSpawnSettings(activeWeapon.spawnSettings);
             ActivateWeapon();
             Destroy(other.gameObject);
         }

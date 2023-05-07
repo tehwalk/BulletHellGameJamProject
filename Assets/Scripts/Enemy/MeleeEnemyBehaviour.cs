@@ -7,10 +7,10 @@ public class MeleeEnemyBehaviour : EnemyBehaviour
     [SerializeField] Enemy enemyData;
     protected override Enemy myEnemyData { get => base.myEnemyData; set => base.myEnemyData = value; }
 
-    protected override void Start()
+    protected override void Init()
     {
-        myEnemyData = enemyData;
-        base.Start();
+       // myEnemyData = enemyData;
+        base.Init();
     }
     protected override void AttackBehaviour()
     {

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b002cbfc8021e574f85e0e3c4be43c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 970c87aea98d4bc4ba5afac29f811fc9, type: 2}
+  enemyData: {fileID: 0}
   shooter: {fileID: 1146270428869036293}
   rotSpeed: 30
 --- !u!58 &-1959456076828894508

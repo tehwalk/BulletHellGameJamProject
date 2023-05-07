@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
     [Header("In Game Properties")]
     [SerializeField] float maxTimeInSeconds;
     float timeRemaining;
+    public float TimeRemaining { get { return timeRemaining; } }
     GameState gameState;
     [Space]
     [Header("GUI Properties")]
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI wonScoreText;
+    [SerializeField] TextMeshProUGUI highScoreText;
     [SerializeField] GameObject pauseGUI, lostGUI, wonGUI;
     AudioManager audioManager;
     PlayerLevel playerLevel;
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
         pauseGUI.SetActive(false);
         lostGUI.SetActive(false);
         wonGUI.SetActive(false);
+        highScoreText.gameObject.SetActive(false);
         gameState = GameState.Playing;
         audioManager.PlayBattleTrack();
 
@@ -92,6 +95,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         wonGUI.SetActive(true);
         wonScoreText.text = "Level Reached: " + playerLevel.Level.ToString();
+        if (PlayerPrefs.GetInt("High") < playerLevel.Level)
+        {
+           PlayerPrefs.SetInt("High", playerLevel.Level);
+           highScoreText.gameObject.SetActive(true);
+        }
         gameState = GameState.Won;
     }
 

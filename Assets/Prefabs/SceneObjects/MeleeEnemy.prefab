@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82a66c7f5f0a1148aa4031956d0397a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 6be4cede3379e1e4ba1162cc66643b05, type: 2}
+  enemyData: {fileID: 0}
 --- !u!58 &-8256624133444460150
 CircleCollider2D:
   m_ObjectHideFlags: 0

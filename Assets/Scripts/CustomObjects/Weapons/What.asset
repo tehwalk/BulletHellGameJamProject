@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: What
   m_EditorClassIdentifier: 
   weaponName: 
-  numberOfColumns: 0
-  speed: 0
-  bulletSprite: {fileID: 0}
-  bulletColor: {r: 0.5754717, g: 0.5398964, b: 0.061890315, a: 1}
-  lifeTime: 0
-  size: 0
-  fireRate: 0
-  arc: 0
-  bulletMaterial: {fileID: 0}
+  bulletDamage: 2
+  numberOfColumns: 3
+  speed: 3
+  bulletSprite: {fileID: -800421472, guid: 7600b63cec5bec5448b8e58d7261172c, type: 3}
+  bulletColor: {r: 1, g: 1, b: 1, a: 1}
+  lifeTime: 5
+  size: 0.3
+  fireRate: 4
+  arc: 120
+  bulletMaterial: {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}

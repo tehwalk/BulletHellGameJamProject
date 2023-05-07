@@ -14,7 +14,7 @@ public class EnemyBehaviour : MonoBehaviour
     protected GameObject player;
     //public GameObject xpPrefab;
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected virtual void Init()
     {
         damage = myEnemyData.damage;
         lifePointsMax = myEnemyData.lifePointsMax;
@@ -25,29 +25,40 @@ public class EnemyBehaviour : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    public virtual void SetMyData(Enemy data)
+    {
+        myEnemyData = data;
+        Init();
+    }
     void Update()
     {
+        if (myEnemyData == null) return;
         AttackBehaviour();
     }
 
     protected virtual void AttackBehaviour() { }
 
-    /*public void HitByPlayer()
-    {
-        GetDamage((int)player.GetComponent<BulletManager>().GetBulletSettings().Damage);
-    }*/
+
     public void GetDamage(int dmg)
     {
+        StartCoroutine(Flash());
         lifePoints -= dmg;
         if (lifePoints <= 0) Die();
     }
 
     void Die()
     {
-        for (int i = 0; i < myEnemyData.spawnables.Length; i++)
-            Instantiate(myEnemyData.spawnables[Random.Range(0, myEnemyData.spawnables.Length)], transform.position, Quaternion.identity);
+        // for (int i = 0; i < myEnemyData.spawnables.Length; i++)
+        Instantiate(myEnemyData.spawnables[Random.Range(0, myEnemyData.spawnables.Length)], transform.position, Quaternion.identity);
         //Destroy(gameObject);
         gameObject.SetActive(false);
+    }
+
+    IEnumerator Flash()
+    {
+        GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
 
 

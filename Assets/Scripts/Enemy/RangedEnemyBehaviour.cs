@@ -7,7 +7,7 @@ using BulletFury.Data;
 public class RangedEnemyBehaviour : EnemyBehaviour
 {
     [SerializeField] RangedEnemy enemyData;
-    [SerializeField] ParticleShooter shooter;
+    public ParticleShooter shooter;
     [SerializeField] float rotSpeed;
     protected new RangedEnemy myEnemyData { get => (RangedEnemy)base.myEnemyData; set => base.myEnemyData = value; }
     //BulletManager bulletManager;
@@ -17,11 +17,11 @@ public class RangedEnemyBehaviour : EnemyBehaviour
     float stopDist;
     GameManager manager;
 
-    protected override void Start()
+    protected override void Init()
     {
         manager = GameManager.Instance;
-        myEnemyData = enemyData;
-        base.Start();
+       // myEnemyData = enemyData;
+        base.Init();
         enemyWeapon = myEnemyData.enemyWeapon;
         stopDist = myEnemyData.stopDist;
         /*bulletManager = manager.GlobalManager;
