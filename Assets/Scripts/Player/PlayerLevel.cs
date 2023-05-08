@@ -20,6 +20,7 @@ public class PlayerLevel : MonoBehaviour
     int xpPointsSum = 0, xpRequired;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] float enemyHitRate;
+    [SerializeField] GameObject bloodGFX;
     float enemyHitTime = 0;
     [Header("GUI Properties")]
     [SerializeField] TextMeshProUGUI levelText;
@@ -54,7 +55,8 @@ public class PlayerLevel : MonoBehaviour
         {
             Debug.Log("melee hit");
             LoseXP(other.gameObject.GetComponent<EnemyBehaviour>().Damage);
-
+            var blood = Instantiate(bloodGFX, transform.position, Quaternion.identity);
+            Destroy(blood, 0.9f);
             StartCoroutine(Invulnerablity());
         }
     }

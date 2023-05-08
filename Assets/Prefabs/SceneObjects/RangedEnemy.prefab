@@ -56,6 +56,7 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 64
+  bloodEmitter: {fileID: 5233506292125492594, guid: dc158a22f28743049ae53b03358e3b83, type: 3}
 --- !u!1 &7678293354804907153
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using BulletFury.Data;
 
-[CreateAssetMenu(menuName = "Weapon", fileName = "New Weapon")]
+[CreateAssetMenu(menuName = "Custom Items/Weapon", fileName = "New Weapon")]
 public class Weapon : ScriptableObject
 {
     public string weaponName;

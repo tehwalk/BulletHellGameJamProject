@@ -18,6 +18,7 @@ public class ParticleShooter : MonoBehaviour
     // public GameObject objectToCollide;
     ParticleSystem system;
     [SerializeField] LayerMask targetMask;
+    [SerializeField] ParticleSystem bloodEmitter;
 
     public Action<GameObject> desiredAction;
     private void Start()
@@ -37,6 +38,8 @@ public class ParticleShooter : MonoBehaviour
             go.transform.Rotate(angle * i, 90, 0); // Rotate so the system emits upwards.
             go.transform.parent = transform;
             go.transform.position = transform.position;
+            var blood = Instantiate(bloodEmitter, go.transform.position, Quaternion.identity);
+            blood.transform.SetParent(go.transform);
             go.AddComponent<ParticleCollision>();
             system = go.AddComponent<ParticleSystem>();
             go.GetComponent<ParticleSystemRenderer>().material = particleMaterial;
@@ -72,11 +75,15 @@ public class ParticleShooter : MonoBehaviour
             collision.type = ParticleSystemCollisionType.World;
             collision.mode = ParticleSystemCollisionMode.Collision2D;
             //collision.
-            
+
             collision.lifetimeLoss = 1;
             collision.bounce = 0;
             collision.sendCollisionMessages = true;
             collision.collidesWith = targetMask;
+
+            var subEmitters = system.subEmitters;
+            subEmitters.enabled = true;
+            subEmitters.AddSubEmitter(blood, ParticleSystemSubEmitterType.Collision, ParticleSystemSubEmitterProperties.InheritNothing, 1);
         }
         // Every 2 secs we will emit.
         //InvokeRepeating("DoEmit", 0f, fireRate);
