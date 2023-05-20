@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using BulletFury;
+//using BulletFury;
 
 public enum GameState { Playing, Paused, Won, Lost }
 public class GameManager : MonoBehaviour
@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
            highScoreText.gameObject.SetActive(true);
         }
         gameState = GameState.Won;
+        audioManager.PlayWonTrack();
     }
 
     public void Pause()

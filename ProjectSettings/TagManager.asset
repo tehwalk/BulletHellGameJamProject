@@ -6,6 +6,8 @@ TagManager:
   tags:
   - XP
   - Enemy
+  - XP2
+  - XP3
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] AudioClip battleClip;
     [SerializeField] AudioClip lostClip;
+    [SerializeField] AudioClip wonClip;
     [SerializeField] float audioDelay;
     // Start is called before the first frame update
     private void Awake()
@@ -16,20 +17,28 @@ public class AudioManager : MonoBehaviour
         if (instance != null && instance != this) instance = null;
         instance = this;
     }
-    private void Start() {
+    private void Start()
+    {
         audioSource = GetComponent<AudioSource>();
     }
 
     public void PlayBattleTrack()
     {
-       audioSource.clip = battleClip;
-       audioSource.loop = true;
-       audioSource.PlayDelayed(audioDelay);
+        audioSource.clip = battleClip;
+        audioSource.loop = true;
+        audioSource.PlayDelayed(audioDelay);
     }
 
     public void PlayLostTrack()
     {
         audioSource.clip = lostClip;
+        audioSource.loop = false;
+        audioSource.PlayDelayed(audioDelay);
+    }
+
+    public void PlayWonTrack()
+    {
+        audioSource.clip = wonClip;
         audioSource.loop = false;
         audioSource.PlayDelayed(audioDelay);
     }

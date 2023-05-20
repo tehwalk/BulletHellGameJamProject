@@ -14,7 +14,7 @@ public class PlayerLevel : MonoBehaviour
     bool canBeHit = true;
     public int Level { get { return playerLevel; } }
     [Header("Basic Properties")]
-    [SerializeField] int xpPoints = 2;
+    // [SerializeField] int xpPoints = 2;
     [SerializeField] int xpRequiredStarting = 10;
     [SerializeField] int xpIncrement = 10;
     int xpPointsSum = 0, xpRequired;
@@ -42,16 +42,33 @@ public class PlayerLevel : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("XP"))
+        /* if (other.CompareTag("XP"))
+         {
+             CollectXP();
+             Destroy(other.gameObject);
+         }*/
+        switch (other.tag)
         {
-            CollectXP();
-            Destroy(other.gameObject);
+            case Tags.T_XP:
+                CollectXP(2);
+                Destroy(other.gameObject);
+                break;
+            case Tags.T_XP2:
+                CollectXP(4);
+                Destroy(other.gameObject);
+                break;
+            case Tags.T_XP3:
+                CollectXP(6);
+                Destroy(other.gameObject);
+                break;
+            default:
+                break;
         }
     }
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy") && canBeHit == true)
+        if (other.gameObject.CompareTag(Tags.T_Enemy) && canBeHit == true)
         {
             Debug.Log("melee hit");
             LoseXP(other.gameObject.GetComponent<EnemyBehaviour>().Damage);
@@ -74,7 +91,7 @@ public class PlayerLevel : MonoBehaviour
         canBeHit = true;
     }
 
-    void CollectXP()
+    void CollectXP(int xpPoints)
     {
         xpPointsSum += xpPoints;
         UpdateXPPointsGUI();

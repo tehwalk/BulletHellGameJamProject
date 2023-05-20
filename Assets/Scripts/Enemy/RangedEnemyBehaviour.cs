@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BulletFury;
-using BulletFury.Data;
+//using BulletFury;
+//using BulletFury.Data;
 
 public class RangedEnemyBehaviour : EnemyBehaviour
 {
