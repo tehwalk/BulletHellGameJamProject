@@ -52,14 +52,17 @@ public class PlayerLevel : MonoBehaviour
             case Tags.T_XP:
                 CollectXP(2);
                 Destroy(other.gameObject);
+                SoundEffectManager.Instance.PlayPickupSound();
                 break;
             case Tags.T_XP2:
                 CollectXP(4);
                 Destroy(other.gameObject);
+                SoundEffectManager.Instance.PlayPickupSound();
                 break;
             case Tags.T_XP3:
                 CollectXP(6);
                 Destroy(other.gameObject);
+                SoundEffectManager.Instance.PlayPickupSound();
                 break;
             default:
                 break;
@@ -81,7 +84,7 @@ public class PlayerLevel : MonoBehaviour
     IEnumerator Flash()
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
     IEnumerator Invulnerablity()

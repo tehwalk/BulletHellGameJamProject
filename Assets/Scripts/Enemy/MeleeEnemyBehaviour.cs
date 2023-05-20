@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MeleeEnemyBehaviour : EnemyBehaviour
 {
@@ -14,7 +15,8 @@ public class MeleeEnemyBehaviour : EnemyBehaviour
     }
     protected override void AttackBehaviour()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        //transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        agent.SetDestination(player.transform.position);
     }
 
 

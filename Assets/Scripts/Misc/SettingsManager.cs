@@ -27,11 +27,11 @@ public class SettingsManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetMusicVolume(float volume)
+    public void SetMusicVolume(System.Single volume)
     {
         musicMixer.SetFloat("Volume", volume);
     }
-    public void SetSFXVolume(float volume)
+    public void SetSFXVolume(System.Single volume)
     {
         soundMixer.SetFloat("Volume", volume);
     }

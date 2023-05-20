@@ -20,7 +20,7 @@ public class RangedEnemyBehaviour : EnemyBehaviour
     protected override void Init()
     {
         manager = GameManager.Instance;
-       // myEnemyData = enemyData;
+        // myEnemyData = enemyData;
         base.Init();
         enemyWeapon = myEnemyData.enemyWeapon;
         stopDist = myEnemyData.stopDist;
@@ -53,15 +53,18 @@ public class RangedEnemyBehaviour : EnemyBehaviour
             case State.Reaching:
                 if (playerDist <= stopDist)
                 {
+                    agent.isStopped = true;
                     shooter.Shoot();
                     enemyState = State.Shooting;
                 }
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+                // transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+                agent.SetDestination(player.transform.position);
                 break;
             case State.Shooting:
                 if (playerDist > stopDist)
                 {
                     shooter.Stop();
+                    agent.isStopped = false;
                     enemyState = State.Reaching;
                 }
                 // transform.Rotate(Vector3.RotateTowards(transform.position, player.transform.position, rotSpeed*Time.deltaTime,180f));

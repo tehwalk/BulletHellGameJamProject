@@ -22,7 +22,7 @@ public class PillSpawner : MonoBehaviour
     {
         if (other.TryGetComponent<WeaponHolder>(out WeaponHolder holder))
         {
-            Debug.Log("i have item triggrer");
+           // Debug.Log("i have item triggrer");
             hasItem = true;
         }
     }
@@ -31,7 +31,7 @@ public class PillSpawner : MonoBehaviour
     {
         if (other.TryGetComponent<WeaponHolder>(out WeaponHolder holder))
         {
-            Debug.Log("item taken trigger");
+           // Debug.Log("item taken trigger");
             hasItem = false;
             CancelInvoke();
             InvokeRepeating("Spawn", spawnRate, spawnRate);
