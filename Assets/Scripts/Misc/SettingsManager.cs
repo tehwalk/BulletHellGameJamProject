@@ -2,15 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
+
 
 public class SettingsManager : MonoBehaviour
 {
     //public GameObject settingsPanel;
     public AudioMixer musicMixer, soundMixer;
+    [SerializeField] GameObject fullScreenToggle;
+
     // Start is called before the first frame update
     private void Start()
     {
         gameObject.SetActive(false);
+        #if UNITY_ANDROID
+        fullScreenToggle.SetActive(false);
+        #else 
+        fullScreenToggle.SetActive(true);
+        #endif
     }
     public void OpenSettingsPanel()
     {

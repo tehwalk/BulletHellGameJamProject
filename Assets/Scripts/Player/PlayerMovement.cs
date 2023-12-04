@@ -9,21 +9,39 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator animator;
     Rigidbody2D rb;
     Vector2 moveDir;
+    [SerializeField] Joystick joystick;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+     #if UNITY_ANDROID
+        joystick.gameObject.SetActive(true);
+
+     #else
+        joystick.gameObject.SetActive(false);
+     #endif
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        moveDir.Set(h, v);
         //transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+        DetermineMovementMethod();
         rb.position += moveDir * moveSpeed * Time.deltaTime;
 
+    }
+
+    void DetermineMovementMethod()
+    {
+        #if UNITY_ANDROID
+            moveDir = joystick.Direction;
+        #else
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
+            moveDir.Set(h, v);
+        #endif
     }
 
     void Update()
